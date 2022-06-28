@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body{
+                background: #131722;
+                color: #ffffff;
+            }
+        </style>
+        {% if current_user.is_authenticated %}
+            <h1>
+                Trend Follow
+                <a href="/">.</a> __________________________________<a href="/user">{{ current_user.username }}</a>
+            </h1>
+        {% else %}
+            <h1>
+                Trend Follow
+                <a href="/">.</a> __________________________ <a href="/registro">Registre-se</a> <a href="/login">Login</a>
+            </h1>
+        {% endif %}
+        
+        <form action="/" method="POST">
+            <input type="text" name="search"/>
+            <input type="submit" name="hello"/>    
+        </form>
+
+    </head>
+
+    <body>   
+        {% block content %} {% endblock %}
+    </body>
+</html>

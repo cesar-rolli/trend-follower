@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if user.is_authenticated %}
+    <form method="POST">
+        <input type="submit" class="follow" name="action" value='follow'>
+    </form>
+{% endif %}
+
+
+<h3>
+    {{ticker}} - cotação {{melhor_resultado.cotacao_atual}}
+</h3>
+
+<h3>
+    {{melhor_resultado.status_atual}} --- Inicio {{melhor_resultado.first_data}} --- Preço de reversão {{ melhor_resultado.preco_reversao }}
+</h3>
+
+<p>
+    Multiplicação patrimonial {{melhor_resultado.patrimonio}} ----- N° de operações {{melhor_resultado.numero_operacoes }} --------- Taxa de acerto {{ melhor_resultado.taxa_acerto }}% ------ Drawdown {{ melhor_resultado.drawdown }}% --------- Maior Retorno {{ melhor_resultado.maior_retorno }}% 
+</p>
+<p>   
+    Melhor periodo {{melhor_resultado.periodo}} ------------------- Operações ganhas {{ melhor_resultado.operacoes_ganhas}}---- Operações perdidas {{melhor_resultado.operacoes_perdas}} --- Media dos ganhos {{melhor_resultado.media_ganhos}}% -- Media das perdas {{melhor_resultado.media_perdas}}%
+</p>
+<p>Apenas compra {{melhor_resultado.longonly}}% --------- Retorno total {{melhor_resultado.retorno_total}}% --------- Retorno anual {{melhor_resultado.anual}}% </p>
+<p>.</p>
+<p>
+    Teste outros periodos abaixo
+</p>
+<form method="POST">
+    {{ form.hidden_tag() }}
+    {{ form.periodo.label }}
+    {{ form.periodo() }}
+    {{ form.submit() }}
+</form>
+{% if periodo != 0 %}
+<p>
+    Multiplicação patrimonial - {{ resultado.patrimonio }} ----- N° de operações {{ resultado.numero_operacoes }} -----Taxa de acerto {{resultado.taxa_acerto}}% --------- Drawdown {{ resultado.drawdown }}% --------- Maior Retorno {{ resultado.maior_retorno }}% 
+</p>
+<p>   
+    Periodo - {{ resultado.periodo }} -----------------  Operações ganhas {{resultado.operacoes_ganhas}} ---- Operações perdidas {{resultado.operacoes_perdas}} --- Media dos ganhos {{resultado.media_ganhos}}% -- Media das perdas {{resultado.media_perdas}}%
+</p>
+<p>
+    Retorno total {{resultado.retorno_total}}%  --------- Retorno anual {{resultado.anual}}%
+</p>
+{% endif %}    
+
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<form action="/user/sair" method="POST">
+    <button type="submit">Sair</button>
+</form>
+
+{% for acao in carteira %}
+    <p>{{acao.ticker}} - cotação:{{acao.cotacao_atual}} -- Preço reversão:{{acao.preco_reversao}} -- Multiplicação:{{acao.patrimonio}}  -- Inicio:{{acao.first_data}} </p>
+{% endfor %}
+
+{% endblock %}
